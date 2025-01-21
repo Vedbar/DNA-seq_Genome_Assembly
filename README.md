@@ -53,6 +53,7 @@ mkdir -p assembly/rhodobacter
 cd assembly/rhodobacter
 fastq-dump --split-files SRR522246
 
+
 ## 2. Dataset
 
 ### Dataset Information
@@ -236,12 +237,7 @@ Identify structural variations, conserved regions, and evolutionary differences.
 
 ---
 
-## License
-
-This guide is distributed under the MIT License.
-
----
 
 ## Contributing
 
-Contributions to improve this pipeline are welcome! Feel free to open issues or submit pull requests.
+Contributions to improve this pipeline are welcome!
