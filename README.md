@@ -41,3 +41,16 @@ conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 
+## 2. Dataset
+
+- **Dataset Information
+- **Source**: NCBI Sequence Read Archive (SRA)
+- **Accession ID**: [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)
+- **Details**: Paired-end sequencing data from the 2014 Zaire ebolavirus outbreak in Sierra Leone.
+
+### Download Dataset
+mkdir -p assembly/rhodobacter
+cd assembly/rhodobacter
+fastq-dump --split-files SRR522246
+
+
