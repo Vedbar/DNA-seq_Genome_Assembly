@@ -15,7 +15,8 @@ This repository provides a detailed step-by-step guide for genome assembly using
 7. [Assembly Visualization](#7-assembly-visualization)  
 8. [Comparing Genomes](#8-comparing-genomes)  
 9. [Genome Annotation](#9-genome-annotation)  
-
+10. [Exercise](#10-Assemble-Zaire-Ebolavirus)
+11. [Educational Notes](#11-educational-notes)
 ---
 
 ## 1. Server Information
