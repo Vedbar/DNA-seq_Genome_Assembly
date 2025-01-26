@@ -135,10 +135,19 @@ This dataset was chosen for its small genome size, high-quality sequencing data,
     ```
 
 ### Explanation of Parameters
-- **ILLUMINACLIP**: Removes adapter sequences.  
-- **LEADING/TRAILING**: Trims low-quality bases at read ends.  
-- **AVGQUAL**: Filters reads with average quality below the threshold.  
-- **MINLEN**: Discards short reads.
+- **PE** - Specifies that the input data consists of **paired-end** reads (two FASTQ files, one for each read direction).  
+- **SRR522246_1.fastq and SRR522246_2.fastq** - The input files contain raw reads for forward (_1) and reverse (_2) sequences, respectively.
+- **trimmed_1.fastq and trimmed_2.fastq** - Output files containing trimmed paired reads for forward and reverse sequences.
+- **unpaired_1.fastq and unpaired_2.fastq** - Output files containing unpaired reads that are discarded from the paired-end alignment due to trimming.
+- **ILLUMINACLIP:adapters.fa:2:30:10** - Removes adapter sequences from reads.
+  - adapters.fa: The file containing adapter sequences to be clipped.
+  - 2: Maximum mismatch count allowed between the adapter and the read.
+  - 30: The minimum score for the adapter match to retain the read.
+  - 10: The length of the initial seed match for adapter removal.
+- **LEADING:20** - Trims the low-quality bases if quality score falls below 20  from the start of a read.
+- **TRAILING:20** - Trims the low-quality bases if quality score falls below 20  from the end of a read.
+- **AVGQUAL:20** - Discards the entire read if the average quality score across the read falls below 20.
+- **MINLEN:20** - Discards reads that are shorter than 20 bases after trimming.
 
 ---
 
@@ -157,10 +166,16 @@ Reconstructing a genome by piecing together sequencing reads.
     spades.py -k 21,33,55,77,99 --careful -o spades_output \
       -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
     ```
+### Explanation of Parameters
+- **-k 21,33,55,77,99** : Multiple k-mers improve assembly accuracy.
+- **-careful** : Flag reduces errors like mismatches and indels.
+- **-o** : Output directory for assembly results.
+- **-1/-2** : Input files containing forward and reverse paired-end reads.
+- **-s** : Unpaired reads to improve completeness.
 
-### Notes
-- SPAdes uses multiple k-mers for robust assembly.  
-- The `--careful` flag reduces errors like mismatches and indels.
+### Note
+- SPAdes uses multiple k-mers for robust assembly. Using multiple k-mer sizes allows it to leverage the advantages of both small and large k-mers, resulting in better handling of repetitive regions and longer contigs.
+
 
 ---
 
@@ -168,18 +183,25 @@ Reconstructing a genome by piecing together sequencing reads.
 
 ### Why Evaluate?
 - Assess the quality, contiguity, and completeness of the assembly.
-
+  
+- Note install the software only if you have not downloaded earlier.
 ```bash
 # conda install -c bioconda entrez-direct
 # OR
-mamba install entrez-direct
+# mamba install entrez-direct
 ```
 
-- Download [NC_002549](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
+- Download Reference genome
+- Organism: [Cereibacter sphaeroides 2.4.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_007493.2)
+- Organism: [Cereibacter sphaeroides KD131](https://www.ncbi.nlm.nih.gov/nuccore/NC_011958)
+- Above are different strains of the same species (Rhodobacter sphaeroides), indicating possible genomic variation due to strain-specific adaptations.
+
 ```bash
- esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
- quast -R ref_genome.fa spades_output/scaffolds.fasta
+ esearch -db nucleotide -query NC_007493.2 | efetch -format fasta > ref_genome_NC_007493.fa
+ esearch -db nucleotide -query NC_011958 | efetch -format fasta > ref_genome_NC_011958.fa
+ quast -R ref_genome_NC_011958.fa spades_output/scaffolds.fasta
  ```
+### Note
 - Copy the results folder locally via FileZilla and check out the HTML report
 - Rhodobacter sphaeroides Reference genome consists of 2 chromosomes and 5 plasmids
 
@@ -195,12 +217,18 @@ mamba install entrez-direct
 - Understand the structure of the assembly and detect misassemblies.
 
 ### Steps
-1. Install [Bandage](http://rrwick.github.io/Bandage/).
-2. Load the SPAdes assembly graph:
-    ```bash
-    spades_output/assembly_graph_with_scaffolds.gfa
-    ```
-3. Explore the graph to identify linear and branched regions.
+1. **Install** [Bandage](http://rrwick.github.io/Bandage/).
+2. **Load the Assembly Graph**  
+   - Open [Bandage](https://rrwick.github.io/Bandage/) and navigate to the main menu.  
+   - Click **File > Load graph** and select your final SPAdes assembly graph file:  
+     `spades_output/assembly_graph.fastg`.
+3. **Visualize the Graph**  
+   - After loading the graph, click the **Draw graph** button on the left side of the interface.  
+   - The visualization will display a clean assembly graph, showcasing the contiguity of your results.
+4. **Compare with a Messier Assembly Graph**  
+   - For comparison, load the graph generated using 21-mers:  
+     `spades_output/K21/assembly_graph.fastg`.   
+   - This graph will likely be less clean and show more fragmented or complex regions, demonstrating the impact of k-mer size on assembly quality.
 
 ---
 
@@ -209,10 +237,26 @@ mamba install entrez-direct
 ### Why Compare?
 Identify structural variations, conserved regions, and evolutionary differences.
 
+Copy both reference and your assembled scaffolds fasta files. Compare them with Mauve
+# Ref: NC_011958
+
 ### Steps
-1. Install [Mauve](http://darlinglab.org/mauve/mauve.html).
-2. Align the assembled genome against a reference:
-    - Input: Assembled scaffolds (`spades_output/scaffolds.fasta`) and reference genome.
+1. **Install** [Mauve](http://darlinglab.org/mauve/mauve.html).
+2. **Open Mauve and Start Alignment**  
+   - Launch [Mauve](https://darlinglab.org/mauve/mauve.html), and from the main menu, select **File > Align with progressiveMauve**.  
+   - A pop-up window will appear to specify input genomes.
+3. **Add Sequences** - Both reference and your assembled scaffolds fasta files
+   - Click **Add Sequence** and select all the reference genome `Ref: NC_011958` files you downloaded (the .gb files), then click **Open**.  
+   - Click **Add Sequence** again, and this time select your assembled genome file:  
+     `spades_output/scaffolds.fasta`.  
+   - Click **Open** to add it to the alignment.
+4. **Align and Visualize**  
+   - Once all sequences are added, click **Align** to process the data.  
+   - Mauve will generate a visualization comparing the conservation of regions across the reference and assembled genomes.  
+   - Because the reference genomes are in GenBank format (.gb files), gene annotations will be included in the visualization, making it easier to identify functional regions.
+
+
+
 
 ---
 
