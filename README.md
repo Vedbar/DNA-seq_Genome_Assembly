@@ -1,6 +1,6 @@
 # Genome Assembly Pipeline
 
-This repository provides a detailed step-by-step guide for genome assembly using **Rhodobacter sphaeroides** and **Zaire Ebolavirus** datasets. It includes data preprocessing, assembly, evaluation, visualization, comparison, and annotation.
+This repository provides a detailed step-by-step guide for genome assembly using **Rhodobacter sphaeroides** dataset as the primary example. It covers key processes such as data preprocessing, genome assembly, evaluation, visualization, comparison, and annotation. Additionally, it includes a guide for genome assembly using a downsampled **Zaire Ebolavirus** dataset for rapid analysis.
 
 ---
 
@@ -22,7 +22,7 @@ This repository provides a detailed step-by-step guide for genome assembly using
 ## 1. Server Information
 
 ### Prerequisites
-- **Tools:** Install PuTTY, FileZilla, Bandage, Mauve.  
+- **Tools:** Install  [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), FileZilla, Bandage, Mauve.  
 - **Server Details:**  
   - **IP Address:** `168.105.161.70`  
   - **Port:** `22`  
