@@ -162,15 +162,19 @@ Reconstructing a genome by piecing together sequencing reads.
 ### Why Evaluate?
 - Assess the quality, contiguity, and completeness of the assembly.
 
-### Steps
-1. Download the reference genome:
-    ```bash
-    esearch -db nucleotide -query NC_007493 | efetch -format fasta > reference.fasta
-    ```
-2. Evaluate the assembly using QUAST:
-    ```bash
-    quast -R reference.fasta spades_output/scaffolds.fasta
-    ```
+```bash
+# conda install -c bioconda entrez-direct
+# OR
+mamba install entrez-direct
+```
+
+- Download [NC_002549](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
+```bash
+ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
+ quast -R ref_genome.fa spades_output/scaffolds.fasta
+ ```
+- Copy the results folder locally via FileZilla and check out the HTML report
+- Rhodobacter sphaeroides Reference genome consists of 2 chromosomes and 5 plasmids
 
 ### Key Metrics
 - **N50**: Larger values indicate better assembly contiguity.  
@@ -224,8 +228,8 @@ Identify structural variations, conserved regions, and evolutionary differences.
 
 ## 10. Exercise
 
-### Exercise Dataset: Zaire Ebolavirus
-- **Dataset Information
+### Exercise Dataset: Dataset
+- **Dataset Information - Zaire Ebolavirus
 - **Source**: NCBI Sequence Read Archive (SRA)
 - **SRA ID:** [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)
 - **Details**: Paired-end sequencing data from the 2014 Zaire ebolavirus outbreak in Sierra Leone. 
@@ -257,47 +261,90 @@ spades.py -k 21,33,55,77,99 --careful -o spades_output -1 trimmed_1.fastq -2 tri
 ```
 
 ### Exercise Dataset: Assembly Evaluation 
+
+
+- **Download Reference Genomes**  
+- Obtain the Ebola virus reference genomes in GenBank format (.gb files) for comparison:  
+     [NC_002549.1 GenBank file](https://www.ncbi.nlm.nih.gov/nuccore/NC_002549.1?report=genbank&log$=seqview).
+
+- Reference Genome: [Zaire ebolavirus isolate Ebola virus](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
+ 
 ```bash
-conda install -c bioconda entrez-direct
-or 
+# conda install -c bioconda entrez-direct
 mamba install entrez-direct
-[NC_002549](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
- esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
+esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
+```
+
+ - Evaluate the assembly using QUAST
+```bash
  quast -R ref_genome.fa spades_output/scaffolds.fasta
- ```
+```
 - Copy the results folder locally via FileZilla and check out the HTML report
 
+  
 
-### Exercise Dataset: Assembly Visualization 
-- Download [Bandage](https://rrwick.github.io/Bandage/). We will use Bandage to visualize the assembly graph. Download and install this on your computer. 
-- When it is open, hit File->Load graph in the main menu. 
-- Here pick your final SPAdes assembly graph that you downloaded, spades_output/assembly_graph.fastg. 
-- Then hit the “Draw graph” button on the left side. You’ll see we got clean assembly results.
-- To see a messier assembly result, you can load the graph spades_output/K21/assembly_graph.fastg. 
-- This is the assembly graph using 21-mers and it didn’t turn out as well.
+### Exercise Dataset: Assembly Visualization
+
+1. **Load the Assembly Graph**  
+   - Open [Bandage](https://rrwick.github.io/Bandage/) and navigate to the main menu.  
+   - Click **File > Load graph** and select your final SPAdes assembly graph file:  
+     `spades_output/assembly_graph.fastg`.
+
+2. **Visualize the Graph**  
+   - After loading the graph, click the **Draw graph** button on the left side of the interface.  
+   - The visualization will display a clean assembly graph, showcasing the contiguity of your results.
+
+3. **Compare with a Messier Assembly Graph**  
+   - For comparison, load the graph generated using 21-mers:  
+     `spades_output/K21/assembly_graph.fastg`.  
+   - This graph will likely be less clean and show more fragmented or complex regions, demonstrating the impact of k-mer size on assembly quality.
+
+  
 
 ### Exercise Dataset: Comparing Genome
-- Install [Mauve](https://darlinglab.org/mauve/mauve.html)
-- First download Ebola virus reference genomes (the .gb files) to compare
-- https://www.ncbi.nlm.nih.gov/nuccore/NC_002549.1?report=genbank&log$=seqview
-- Open Mauve. Then on the main menu select File->Align with progressiveMauve. 
-- This will trigger a pop-up to specify your input genomes. 
-- Click “Add Sequence” and select all the reference genomes you downloaded (the .gb files) and click “Open”. 
-- Click “Add Sequence” again but this time select your spades_output/scaffolds.fasta file and hit “Open”. 
-- Finally, click “Align” to process your data.
-- This will produce a visualization comparing the conservation of various regions across these assembled genomes. 
-- Since we are using GenBank files (.gb) for our references, we will also get gene annotations as part of the visualization.
+
+1. **Open Mauve and Start Alignment**  
+   - Launch [Mauve](https://darlinglab.org/mauve/mauve.html), and from the main menu, select **File > Align with progressiveMauve**.  
+   - A pop-up window will appear to specify input genomes.
+
+2. **Add Sequences**  
+   - Click **Add Sequence** and select all the reference genome files you downloaded (the .gb files), then click **Open**.  
+   - Click **Add Sequence** again, and this time select your assembled genome file:  
+     `spades_output/scaffolds.fasta`.  
+   - Click **Open** to add it to the alignment.
+
+3. **Align and Visualize**  
+   - Once all sequences are added, click **Align** to process the data.  
+   - Mauve will generate a visualization comparing the conservation of regions across the reference and assembled genomes.  
+   - Because the reference genomes are in GenBank format (.gb files), gene annotations will be included in the visualization, making it easier to identify functional regions.
+
+
 
 ### Exercise Dataset: Genome Annotation 
-- Lastly, let’s annotate possible genes our assembled genome. 
-- First we’ll find open reading frames (ORFs) using NCBI’s ORFfinder. https://www.ncbi.nlm.nih.gov/orffinder/
-- Copy and paste only the first contig from your spades_output/scaffolds.fasta file. 
-- Submit with the default settings.
-- To download all ORF results into a FASTA file, on the bottom right box, press “Mark subset…” and pick “All ORFs.” 
-- Then press “Download marked set.” By default, this will save the protein predictions. 
-- You can also download CDS predictions by clicking on the drop down and changing “Protein FASTA” to “CDS FASTA”.
-- With the list of ORFs, you can now use BLAST to try to predict the function of the ORF. 
-- Use Nucleotide BLAST for the CDS regions and Protein BLAST for the protein file.
+
+1. **Annotate Genes in the Assembled Genome**  
+   - The final step is to annotate possible genes in your assembled genome.
+
+2. **Find Open Reading Frames (ORFs)**  
+   - Use [NCBI's ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/) to identify open reading frames (ORFs).  
+   - Open the `spades_output/scaffolds.fasta` file and copy the sequence of only the **first contig**.  
+   - Paste the sequence into ORFfinder and submit it with the default settings.
+
+3. **Download ORF Results**  
+   - After processing, locate the "Mark subset..." option in the bottom-right box.  
+   - Select **"All ORFs"** and click **"Download marked set."**  
+   - By default, this will save the protein predictions in a FASTA file.  
+   - To download the coding sequences (CDS) instead, use the dropdown menu and switch from **"Protein FASTA"** to **"CDS FASTA."**
+
+4. **Predict Functions Using BLAST**  
+   - Use the downloaded results to predict gene functions:  
+     - For **CDS regions**, use [NCBI's Nucleotide BLAST (BLASTn)](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  
+     - For **protein sequences**, use [NCBI's Protein BLAST (BLASTp)](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  
+   - These tools will align your sequences against known databases to provide functional annotations for the identified ORFs.
+
+5. **Interpret Results**  
+   - Review the BLAST outputs to identify putative gene functions, conserved domains, or homologous sequences in other organisms.  
+   - Use these annotations to better understand the biological roles of the genes in your assembled genome.
 
 ---
 
