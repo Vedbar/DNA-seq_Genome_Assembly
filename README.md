@@ -64,7 +64,8 @@ mamba install sra-tools fastqc trimmomatic multiqc curl spades quast
 ### Dataset Information
 - **Organism:** Rhodobacter sphaeroides  
 - **SRA ID:** [SRR522246](https://www.ncbi.nlm.nih.gov/sra/?term=SRR522246)  
-- **Size:** Paired-end reads (~4.6 GB each, total 9.2 GB).  
+- **Size:** Paired-end reads (~4.6 GB each, total 9.2 GB).
+- **Time to download:** > 15 minutes
 
 ### Why This Dataset?
 This dataset was chosen for its small genome size, high-quality sequencing data, and suitability for teaching genome assembly principles.
