@@ -22,11 +22,12 @@ This repository provides a detailed step-by-step guide for genome assembly using
 ## 1. Server Information
 
 ### Prerequisites
-- **Tools:** Install  [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), FileZilla, Bandage, Mauve.  
+- **Tools:** Install  [PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html), [FileZilla](https://filezilla-project.org/download.php), [Bandage](http://rrwick.github.io/Bandage/), [Mauve](https://darlinglab.org/mauve/mauve.html).  
 - **Server Details:**  
   - **IP Address:** `168.105.161.70`  
   - **Port:** `22`  
-  - **Access:** Requires JABSOM or UH network (use VPN for remote access).  
+  - **Access:** Requires JABSOM or UH network (use VPN for remote access).
+  - Note: With PuTTY and FileZilla you can connect to server.
 
 ### Security Practices
 - Avoid multiple failed login attempts to prevent account locking.  
@@ -44,20 +45,6 @@ conda config --add channels conda-forge
 ```
 
 ---
-
-
-## 2. Dataset
-
-- **Dataset Information
-- **Source**: NCBI Sequence Read Archive (SRA)
-- **Accession ID**: [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)
-- **Details**: Paired-end sequencing data from the 2014 Zaire ebolavirus outbreak in Sierra Leone.
-
-### Download Dataset
-mkdir -p assembly/rhodobacter
-cd assembly/rhodobacter
-fastq-dump --split-files SRR522246
-
 
 ## 2. Dataset
 
@@ -80,14 +67,9 @@ This dataset was chosen for its small genome size, high-quality sequencing data,
     fastq-dump --split-files SRR522246
     ```
 
-### Example Dataset: Zaire Ebolavirus
-- **SRA ID:** [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)  
-- **Subset:** Use only 100,000 paired-end reads for faster processing:
-    ```bash
-    mkdir -p assembly/ebola
-    cd assembly/ebola
-    fastq-dump --split-files -X 100000 SRR1553425
-    ```
+
+
+
 
 ---
 
@@ -232,7 +214,20 @@ Identify structural variations, conserved regions, and evolutionary differences.
 
 ---
 
-## 10. Educational Notes
+## 10. Exercise
+
+### Exercise Dataset: Zaire Ebolavirus
+- **Dataset Information
+- **Source**: NCBI Sequence Read Archive (SRA)
+- **SRA ID:** [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)
+- **Details**: Paired-end sequencing data from the 2014 Zaire ebolavirus outbreak in Sierra Leone. 
+- **Subset:** Use only 100,000 paired-end reads for faster processing:
+    ```bash
+    mkdir -p assembly/ebola
+    cd assembly/ebola
+    fastq-dump --split-files -X 100000 SRR1553425
+    ```
+
 
 ### Key Takeaways
 - **Base Quality (FastQC):** High-quality data improves assembly.  
@@ -241,6 +236,19 @@ Identify structural variations, conserved regions, and evolutionary differences.
 - **Annotation Tools:** Experiment with different tools to cross-validate results.
 
 ---
+
+
+## 11. Educational Notes
+
+### Key Takeaways
+- **Base Quality (FastQC):** High-quality data improves assembly.  
+- **Trimming Parameters:** Balance between removing contaminants and retaining data.  
+- **Assembly Metrics:** High N50 and low misassembly rates indicate good assembly.  
+- **Annotation Tools:** Experiment with different tools to cross-validate results.
+
+---
+
+
 
 
 ## Contributing
