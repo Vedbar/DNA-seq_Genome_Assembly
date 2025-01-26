@@ -51,7 +51,11 @@ conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 ```
-
+### Installing software
+```bash
+conda install mamba
+mamba install sra-tools fastqc trimmomatic multiqc curl spades quast
+``
 ---
 
 ## 2. Dataset
