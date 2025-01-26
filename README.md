@@ -96,7 +96,7 @@ This dataset was chosen for its small genome size, high-quality sequencing data,
 ### Steps
 1. Create a directory for quality control results:
     ```bash
-    mkdir qc
+    mkdir -p qc
     ```
 2. Run FastQC to assess the quality of raw reads:
     ```bash
@@ -106,7 +106,8 @@ This dataset was chosen for its small genome size, high-quality sequencing data,
     ```bash
     multiqc qc/
     ```
-
+- Transfer qc and multiqc results to your local machine and view HTML reports.
+  
 ### Key Metrics to Examine
 - **Per-base sequence quality**: Should be high across all cycles.  
 - **GC content**: Compare with the expected range for the organism.  
