@@ -279,7 +279,7 @@ Copy both reference and your assembled scaffolds fasta files. Compare them with 
 
 ## 10. Exercise
 
-### Exercise Dataset: Dataset
+### Exercise : Dataset
 - **Dataset Information - Zaire Ebolavirus
 - **Source**: NCBI Sequence Read Archive (SRA)
 - **SRA ID:** [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)
@@ -291,7 +291,7 @@ Copy both reference and your assembled scaffolds fasta files. Compare them with 
     fastq-dump --split-files -X 100000 SRR1553425
     ```
 
-### Exercise Dataset: Quality Visualization 
+### Exercise : Quality Visualization 
 ```bash
 mkdir qc
 fastqc *.fastq -o qc/
@@ -299,19 +299,19 @@ multiqc .
 ```
 - Transfer qc and multiqc results to your local machine and view HTML report
 
-### Exercise Dataset: Quality Filtering and Trimming
+### Exercise : Quality Filtering and Trimming
 ```bash
 curl –OL https://raw.githubusercontent.com/BioInfoTools/BBMap/master/resources/adapters.fa > adapters.fa
 trimmomatic PE SRR1553425_1.fastq SRR1553425_2.fastq trimmed_1.fastq unpaired_1.fastq trimmed_2.fastq unpaired_2.fastq ILLUMINACLIP:adapters.fa:2:30:10 LEADING:20 TRAILING:20 AVGQUAL:20 MINLEN:20
 ``` 
 
-### Exercise Dataset: Genome Assembly
+### Exercise : Genome Assembly
 ```bash
 cat unpaired_1.fastq unpaired_2.fastq > unpaired.fastq
 spades.py -k 21,33,55,77,99 --careful -o spades_output -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
 ```
 
-### Exercise Dataset: Assembly Evaluation 
+### Exercise : Assembly Evaluation 
 
 
 - **Download Reference Genomes**  
@@ -334,7 +334,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
   
 
-### Exercise Dataset: Assembly Visualization
+### Exercise : Assembly Visualization
 
 1. **Load the Assembly Graph**  
    - Open [Bandage](https://rrwick.github.io/Bandage/) and navigate to the main menu.  
@@ -352,7 +352,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
   
 
-### Exercise Dataset: Comparing Genome
+### Exercise : Comparing Genome
 
 1. **Open Mauve and Start Alignment**  
    - Launch [Mauve](https://darlinglab.org/mauve/mauve.html), and from the main menu, select **File > Align with progressiveMauve**.  
@@ -371,7 +371,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
 
 
-### Exercise Dataset: Genome Annotation 
+### Exercise : Genome Annotation 
 
 1. **Annotate Genes in the Assembled Genome**  
    - The final step is to annotate possible genes in your assembled genome.
