@@ -15,8 +15,16 @@ This repository provides a detailed step-by-step guide for genome assembly using
 7. [Assembly Visualization](#7-assembly-visualization)  
 8. [Comparing Genomes](#8-comparing-genomes)  
 9. [Genome Annotation](#9-genome-annotation)  
-10. [Exercise](#10-Assemble-Zaire-Ebolavirus)
-11. [Educational Notes](#11-educational-notes)
+10. [Exercise](#10-exercise)
+    - [Dataset](#exercise-dataset)  
+    - [Quality Visualization](#exercise-dataset-quality-visualization)  
+    - [Quality Filtering and Trimming](#exercise-dataset-quality-filtering-and-trimming)  
+    - [Genome Assembly](#exercise-dataset-genome-assembly)  
+    - [Assembly Evaluation](#exercise-dataset-assembly-evaluation)  
+    - [Assembly Visualization](#exercise-dataset-assembly-visualization)  
+    - [Comparing Genomes](#exercise-dataset-comparing-genome)  
+    - [Genome Annotation](#exercise-dataset-genome-annotation)  
+12. [Educational Notes](#11-educational-notes)
 ---
 
 ## 1. Server Information
@@ -228,12 +236,68 @@ Identify structural variations, conserved regions, and evolutionary differences.
     fastq-dump --split-files -X 100000 SRR1553425
     ```
 
+### Exercise Dataset: Quality Visualization 
+```bash
+mkdir qc
+fastqc *.fastq -o qc/
+multiqc .
+```
+- Transfer qc and multiqc results to your local machine and view HTML report
 
-### Key Takeaways
-- **Base Quality (FastQC):** High-quality data improves assembly.  
-- **Trimming Parameters:** Balance between removing contaminants and retaining data.  
-- **Assembly Metrics:** High N50 and low misassembly rates indicate good assembly.  
-- **Annotation Tools:** Experiment with different tools to cross-validate results.
+### Exercise Dataset: Quality Filtering and Trimming
+```bash
+curl –OL https://raw.githubusercontent.com/BioInfoTools/BBMap/master/resources/adapters.fa > adapters.fa
+trimmomatic PE SRR1553425_1.fastq SRR1553425_2.fastq trimmed_1.fastq unpaired_1.fastq trimmed_2.fastq unpaired_2.fastq ILLUMINACLIP:adapters.fa:2:30:10 LEADING:20 TRAILING:20 AVGQUAL:20 MINLEN:20
+``` 
+
+### Exercise Dataset: Genome Assembly
+```bash
+cat unpaired_1.fastq unpaired_2.fastq > unpaired.fastq
+spades.py -k 21,33,55,77,99 --careful -o spades_output -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
+```
+
+### Exercise Dataset: Assembly Evaluation 
+```bash
+conda install -c bioconda entrez-direct
+or 
+mamba install entrez-direct
+[NC_002549](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
+ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
+ quast -R ref_genome.fa spades_output/scaffolds.fasta
+ ```
+- Copy the results folder locally via FileZilla and check out the HTML report
+
+
+### Exercise Dataset: Assembly Visualization 
+- Download [Bandage](https://rrwick.github.io/Bandage/). We will use Bandage to visualize the assembly graph. Download and install this on your computer. 
+- When it is open, hit File->Load graph in the main menu. 
+- Here pick your final SPAdes assembly graph that you downloaded, spades_output/assembly_graph.fastg. 
+- Then hit the “Draw graph” button on the left side. You’ll see we got clean assembly results.
+- To see a messier assembly result, you can load the graph spades_output/K21/assembly_graph.fastg. 
+- This is the assembly graph using 21-mers and it didn’t turn out as well.
+
+### Exercise Dataset: Comparing Genome
+- Install [Mauve](https://darlinglab.org/mauve/mauve.html)
+- First download Ebola virus reference genomes (the .gb files) to compare
+- https://www.ncbi.nlm.nih.gov/nuccore/NC_002549.1?report=genbank&log$=seqview
+- Open Mauve. Then on the main menu select File->Align with progressiveMauve. 
+- This will trigger a pop-up to specify your input genomes. 
+- Click “Add Sequence” and select all the reference genomes you downloaded (the .gb files) and click “Open”. 
+- Click “Add Sequence” again but this time select your spades_output/scaffolds.fasta file and hit “Open”. 
+- Finally, click “Align” to process your data.
+- This will produce a visualization comparing the conservation of various regions across these assembled genomes. 
+- Since we are using GenBank files (.gb) for our references, we will also get gene annotations as part of the visualization.
+
+### Exercise Dataset: Genome Annotation 
+- Lastly, let’s annotate possible genes our assembled genome. 
+- First we’ll find open reading frames (ORFs) using NCBI’s ORFfinder. https://www.ncbi.nlm.nih.gov/orffinder/
+- Copy and paste only the first contig from your spades_output/scaffolds.fasta file. 
+- Submit with the default settings.
+- To download all ORF results into a FASTA file, on the bottom right box, press “Mark subset…” and pick “All ORFs.” 
+- Then press “Download marked set.” By default, this will save the protein predictions. 
+- You can also download CDS predictions by clicking on the drop down and changing “Protein FASTA” to “CDS FASTA”.
+- With the list of ORFs, you can now use BLAST to try to predict the function of the ORF. 
+- Use Nucleotide BLAST for the CDS regions and Protein BLAST for the protein file.
 
 ---
 
@@ -254,3 +318,4 @@ Identify structural variations, conserved regions, and evolutionary differences.
 ## Contributing
 
 Contributions to improve this pipeline are welcome!
+---
