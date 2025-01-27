@@ -409,6 +409,9 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 - **Trimming Parameters:** Balance between removing contaminants and retaining data.  
 - **Assembly Metrics:** High N50 and low misassembly rates indicate good assembly.  
 - **Annotation Tools:** Experiment with different tools to cross-validate results.
+- Alternative annotation tools:
+ - Prokka: Command-line tool for rapid genome annotation.
+ - ORFfinder: Predicts open reading frames (ORFs).
 
 ---
 
