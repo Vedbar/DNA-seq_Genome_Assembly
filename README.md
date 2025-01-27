@@ -240,7 +240,7 @@ Reconstructing a genome by piecing together sequencing reads.
 Identify structural variations, conserved regions, and evolutionary differences.
 
 Copy both reference and your assembled scaffolds fasta files. Compare them with Mauve
-# Ref: NC_011958
+#### Reference Genome: [NC_011958](https://www.ncbi.nlm.nih.gov/nuccore/NC_011958)
 
 ### Steps
 1. **Install** [Mauve](http://darlinglab.org/mauve/mauve.html).
@@ -417,5 +417,5 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
 ## Contributing
 
-Contributions to improve this pipeline are welcome!
+### Contributions to improve this pipeline are welcome!
 ---
