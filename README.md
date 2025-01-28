@@ -16,14 +16,14 @@ This repository provides a detailed step-by-step guide for genome assembly using
 8. [Comparing Genomes](#8-comparing-genomes)  
 9. [Genome Annotation](#9-genome-annotation)  
 10. [Exercise](#10-exercise)
-    - [Dataset](#exercise-dataset)  
-    - [Quality Visualization](#exercise-quality-visualization)  
-    - [Quality Filtering and Trimming](#exercise-quality-filtering-and-trimming)  
-    - [Genome Assembly](#exercise-genome-assembly)  
-    - [Assembly Evaluation](#exercise-assembly-evaluation)  
-    - [Assembly Visualization](#exercise-assembly-visualization)  
-    - [Comparing Genomes](#exercise-comparing-genome)  
-    - [Genome Annotation](#exercise-genome-annotation)  
+    - [Dataset](#exercise-1-dataset)  
+    - [Quality Visualization](#exercise-2-quality-visualization)  
+    - [Quality Filtering and Trimming](#exercise-3-quality-filtering-and-trimming)  
+    - [Genome Assembly](#exercise-4-genome-assembly)  
+    - [Assembly Evaluation](#exercise-5-assembly-evaluation)  
+    - [Assembly Visualization](#exercise-6-assembly-visualization)  
+    - [Comparing Genomes](#exercise-7-comparing-genome)  
+    - [Genome Annotation](#exercise-8-genome-annotation)  
 12. [Educational Notes](#11-educational-notes)
 ---
 
@@ -281,8 +281,8 @@ Copy both reference and your assembled scaffolds fasta files. Compare them with 
 
 ## 10. Exercise
 
-### Exercise : Dataset
-- **Dataset Information - Zaire Ebolavirus
+### Exercise : 1 Dataset
+- **Dataset Information**: Zaire Ebolavirus
 - **Source**: NCBI Sequence Read Archive (SRA)
 - **SRA ID:** [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)
 - **Details**: Paired-end sequencing data from the 2014 Zaire ebolavirus outbreak in Sierra Leone. 
@@ -293,21 +293,21 @@ Copy both reference and your assembled scaffolds fasta files. Compare them with 
     fastq-dump --split-files -X 100000 SRR1553425
     ```
 
-### Exercise : Quality Visualization 
+### Exercise : 2 Quality Visualization 
 ```bash
 mkdir qc
 fastqc *.fastq -o qc/
 multiqc .
 ```
-- Transfer qc and multiqc results to your local machine and view HTML report
+- Transfer qc and multiqc results to your local machine via FileZilla and view HTML report
 
-### Exercise : Quality Filtering and Trimming
+### Exercise : 3 Quality Filtering and Trimming
 ```bash
 curl –OL https://raw.githubusercontent.com/BioInfoTools/BBMap/master/resources/adapters.fa > adapters.fa
 trimmomatic PE SRR1553425_1.fastq SRR1553425_2.fastq trimmed_1.fastq unpaired_1.fastq trimmed_2.fastq unpaired_2.fastq ILLUMINACLIP:adapters.fa:2:30:10 LEADING:20 TRAILING:20 AVGQUAL:20 MINLEN:20
 ``` 
 
-### Exercise : Genome Assembly
+### Exercise : 4 Genome Assembly
 ```bash
 cat unpaired_1.fastq unpaired_2.fastq > unpaired.fastq
 spades.py -k 21,33,55,77 --careful -o spades_output -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
@@ -315,7 +315,7 @@ spades.py -k 21,33,55,77 --careful -o spades_output -1 trimmed_1.fastq -2 trimme
 spades.py -k 21 --careful -o spades_output_k21 -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
 ```
 
-### Exercise : Assembly Evaluation 
+### Exercise : 5 Assembly Evaluation 
 - **Download Reference Genomes**  
 - Obtain the Ebola virus reference genomes in GenBank format (.gb files) for comparison:  
      [NC_002549.1 GenBank file](https://www.ncbi.nlm.nih.gov/nuccore/NC_002549.1?report=genbank&log$=seqview).
@@ -335,7 +335,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
   
 
-### Exercise : Assembly Visualization
+### Exercise : 6 Assembly Visualization
 1. **Load the Assembly Graph**  
    - Open [Bandage](https://rrwick.github.io/Bandage/) and navigate to the main menu.  
    - Click **File > Load graph** and select your final SPAdes assembly graph file:  
@@ -352,7 +352,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
   
 
-### Exercise : Comparing Genome
+### Exercise : 7 Comparing Genome
 1. **Open Mauve and Start Alignment**  
    - Launch [Mauve](https://darlinglab.org/mauve/mauve.html), and from the main menu, select **File > Align with progressiveMauve**.  
    - A pop-up window will appear to specify input genomes.
@@ -370,7 +370,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
 
 
-### Exercise : Genome Annotation 
+### Exercise : 8 Genome Annotation 
 
 1. **Annotate Genes in the Assembled Genome**  
    - The final step is to annotate possible genes in your assembled genome.
