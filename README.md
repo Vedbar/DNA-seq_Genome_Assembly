@@ -16,7 +16,7 @@ This repository provides a detailed step-by-step guide for genome assembly using
 8. [Comparing Genomes](#8-comparing-genomes)  
 9. [Genome Annotation](#9-genome-annotation)  
 10. [Exercise](#10-exercise)
-    i. [Dataset](#exercise-1-dataset)  
+    - [Dataset](#exercise-1-dataset)  
     - [Quality Visualization](#exercise-2-quality-visualization)  
     - [Quality Filtering and Trimming](#exercise-3-quality-filtering-and-trimming)  
     - [Genome Assembly](#exercise-4-genome-assembly)  
@@ -281,7 +281,7 @@ Copy both reference and your assembled scaffolds fasta files. Compare them with 
 
 ## 10. Exercise
 
-### i. Exercise : 1 Dataset
+### Exercise : 1 Dataset
 - **Dataset Information**: Zaire Ebolavirus
 - **Source**: NCBI Sequence Read Archive (SRA)
 - **SRA ID:** [SRR1553425](https://www.ncbi.nlm.nih.gov/sra/SRR1553425)
