@@ -318,8 +318,7 @@ spades.py -k 21 --careful -o spades_output_k21 -1 trimmed_1.fastq -2 trimmed_2.f
 ### Exercise : V. Assembly Evaluation 
 - **Download Reference Genomes**  
 - Obtain the Ebola virus reference genomes in GenBank format (.gb files) for comparison:  
-     [NC_002549.1 GenBank file](https://www.ncbi.nlm.nih.gov/nuccore/NC_002549.1?report=genbank&log$=seqview).
-- Reference Genome: [Zaire ebolavirus isolate Ebola virus](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
+**Zaire ebolavirus isolate Ebola virus** [NC_002549.1 GenBank file](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
  
 ```bash
 # conda install -c bioconda entrez-direct
