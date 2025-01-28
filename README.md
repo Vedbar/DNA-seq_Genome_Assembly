@@ -312,16 +312,13 @@ trimmomatic PE SRR1553425_1.fastq SRR1553425_2.fastq trimmed_1.fastq unpaired_1.
 cat unpaired_1.fastq unpaired_2.fastq > unpaired.fastq
 spades.py -k 21,33,55,77 --careful -o spades_output -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
 # redo for k 21 only
-spades.py -k 21 --careful -o spades_output_21 -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
+spades.py -k 21 --careful -o spades_output_k21 -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
 ```
 
 ### Exercise : Assembly Evaluation 
-
-
 - **Download Reference Genomes**  
 - Obtain the Ebola virus reference genomes in GenBank format (.gb files) for comparison:  
      [NC_002549.1 GenBank file](https://www.ncbi.nlm.nih.gov/nuccore/NC_002549.1?report=genbank&log$=seqview).
-
 - Reference Genome: [Zaire ebolavirus isolate Ebola virus](https://www.ncbi.nlm.nih.gov/nuccore/10313991)
  
 ```bash
@@ -339,7 +336,6 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
   
 
 ### Exercise : Assembly Visualization
-
 1. **Load the Assembly Graph**  
    - Open [Bandage](https://rrwick.github.io/Bandage/) and navigate to the main menu.  
    - Click **File > Load graph** and select your final SPAdes assembly graph file:  
@@ -351,13 +347,12 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
 3. **Compare with a Messier Assembly Graph**  
    - For comparison, load the graph generated using 21-mers:  
-     `spades_output/K21/assembly_graph.fastg`.  
+     `spades_output_k21/K21/assembly_graph.fastg`.  
    - This graph will likely be less clean and show more fragmented or complex regions, demonstrating the impact of k-mer size on assembly quality.
 
   
 
 ### Exercise : Comparing Genome
-
 1. **Open Mauve and Start Alignment**  
    - Launch [Mauve](https://darlinglab.org/mauve/mauve.html), and from the main menu, select **File > Align with progressiveMauve**.  
    - A pop-up window will appear to specify input genomes.
