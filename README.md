@@ -37,8 +37,7 @@ This repository provides a detailed step-by-step guide for genome assembly using
   - **Access:** Requires JABSOM or UH network (use VPN for remote access).
   - Note: With PuTTY and FileZilla you can connect to server.
  
-    ![PuTTY](putty_image.PNG "PuTTY")![FileZilla](FileZilla.png "FileZilla")
- ![PuTTY](putty_image.PNG "PuTTY") ![FileZilla](FileZilla.png "FileZilla")
+    ![PuTTY](putty_image.PNG "PuTTY") ![FileZilla](FileZilla.png "FileZilla")
 
 ### Security Practices
 - Avoid multiple failed login attempts to prevent account locking.  
