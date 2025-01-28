@@ -310,7 +310,9 @@ trimmomatic PE SRR1553425_1.fastq SRR1553425_2.fastq trimmed_1.fastq unpaired_1.
 ### Exercise : Genome Assembly
 ```bash
 cat unpaired_1.fastq unpaired_2.fastq > unpaired.fastq
-spades.py -k 21,33,55,77,99 --careful -o spades_output -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
+spades.py -k 21,33,55,77 --careful -o spades_output -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
+# redo for k 21 only
+spades.py -k 21 --careful -o spades_output_21 -1 trimmed_1.fastq -2 trimmed_2.fastq -s unpaired.fastq
 ```
 
 ### Exercise : Assembly Evaluation 
