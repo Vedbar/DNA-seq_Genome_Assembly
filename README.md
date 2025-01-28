@@ -330,7 +330,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 
  - Evaluate the assembly using QUAST
 ```bash
- quast -R ref_genome.fa spades_output/scaffolds.fasta
+ quast -s -R ref_genome.fa spades_output/scaffolds.fasta
 ```
 - Copy the results folder locally via FileZilla and check out the HTML report
 
