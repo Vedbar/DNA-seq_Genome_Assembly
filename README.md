@@ -366,8 +366,9 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
    - Once all sequences are added, click **Align** to process the data.  
    - Mauve will generate a visualization comparing the conservation of regions across the reference and assembled genomes.  
    - Because the reference genomes are in GenBank format (.gb files), gene annotations will be included in the visualization, making it easier to identify functional regions.
-
+     - Download from GenBank in GB format
      ![GenBank_Data](GenBank.download.PNG "GenBank_Data")
+     - Mauve Result
      ![Mauve_result](Mauve_result.PNG "Mauve_result")
 
 ### Exercise : VIII. Genome Annotation 
