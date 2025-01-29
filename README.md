@@ -411,11 +411,11 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 #### Genome Annotation Best Practices
  - **BLAST-based Functional Annotation:** Use BLASTn for nucleotide sequences and BLASTp for protein sequences to predict gene functions.
  - **Alternative Annotation Tools:**
-        Prokka: Command-line tool for automated genome annotation of bacterial genomes.
-        RAST: Web-based annotation service for prokaryotic genomes.
-        ORFfinder: Identifies Open Reading Frames (ORFs) to detect protein-coding regions.
-        EggNOG-mapper: Functional annotation of genes based on orthologous groups.
-        InterProScan: Provides domain-based annotations and functional insights.
+        - Prokka: Command-line tool for automated genome annotation of bacterial genomes.
+        - RAST: Web-based annotation service for prokaryotic genomes.
+        - ORFfinder: Identifies Open Reading Frames (ORFs) to detect protein-coding regions.
+        - EggNOG-mapper: Functional annotation of genes based on orthologous groups.
+        - InterProScan: Provides domain-based annotations and functional insights.
 #### Visualization Techniques
  - **Bandage:** Visualize genome assembly graphs to identify contigs, misassemblies, and scaffold connections.
  - **Mauve:** Perform whole-genome alignments to compare structural variations and conserved genomic regions.
