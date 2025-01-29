@@ -410,12 +410,12 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
  - **Assembly Quality Metrics:** High N50, and comprehensive coverage indicate a well-assembled genome.
 #### Genome Annotation Best Practices
  - **BLAST-based Functional Annotation:** Use BLASTn for nucleotide sequences and BLASTp for protein sequences to predict gene functions.
- - **Alternative Annotation Tools:**
- - Prokka, RAST, ORFfinder, EggNOG-mapper, InterProScan
+ - **Alternative Annotation Tools:** Prokka, RAST, ORFfinder, EggNOG-mapper, InterProScan
 #### Visualization Techniques
  - **Bandage:** Visualize genome assembly graphs to identify contigs, misassemblies, and scaffold connections.
  - **Mauve:** Perform whole-genome alignments to compare structural variations and conserved genomic regions.
  - **IGV (Integrative Genomics Viewer):** View read alignments, gene annotations, and genomic variants.
+   
 ---
 
 ## Contributing
