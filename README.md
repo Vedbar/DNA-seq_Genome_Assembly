@@ -377,7 +377,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
    - The final step is to annotate possible genes in your assembled genome.
 
 2. **Find Open Reading Frames (ORFs)**  
-   - Use [NCBI's ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/) to identify open reading frames (ORFs).  
+   - Use [NCBI's ORFfinder](https://www.ncbi.nlm.nih.gov/orffinder/) to identify open reading frames (ORFs). An ORF is a sequence of DNA that has the potential to code for a protein. 
    - Open the `spades_output/scaffolds.fasta` file and copy the sequence of only the **first contig**.  
    - Paste the sequence into ORFfinder and submit it with the default settings.
 
@@ -390,8 +390,7 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 4. **Predict Functions Using BLAST**  
    - Use the downloaded results to predict gene functions:  
      - For **CDS regions**, use [NCBI's Nucleotide BLAST (BLASTn)](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  
-     - For **protein sequences**, use [NCBI's Protein BLAST (BLASTp)](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  
-   - These tools will align your sequences against known databases to provide functional annotations for the identified ORFs.
+     - For **protein sequences**, use [NCBI's Protein BLAST (BLASTp)](https://blast.ncbi.nlm.nih.gov/Blast.cgi).  Align your sequences against known databases (such as **Swiss-Prot** or **NR (Non-redundent protein database)** ) to provide functional annotations for the identified ORFs.
 
 5. **Interpret Results**  
    - Review the BLAST outputs to identify putative gene functions, conserved domains, or homologous sequences in other organisms.  
