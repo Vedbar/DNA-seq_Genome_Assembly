@@ -402,20 +402,27 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
 ## 11. Educational Notes
 
 ### Key Takeaways
-- **Base Quality (FastQC):** High-quality data improves assembly.  
-- **Trimming Parameters:** Balance between removing contaminants and retaining data.  
-- **Assembly Metrics:** High N50 and low misassembly rates indicate good assembly.  
-- **Annotation Tools:** Experiment with different tools to cross-validate results.
-- Alternative annotation tools:
- - Prokka: Command-line tool for rapid genome annotation.
- - ORFfinder: Predicts open reading frames (ORFs).
+#### Quality Control and Filtering
+- **Base Quality Assessment (FastQC):** Ensures high-quality sequencing data to improve genome assembly.
+- **Trimming Reads:** Eliminates contaminants, low-quality bases, and adapter sequences while preserving critical information.
+#### Genome Assembly Insights
+ - **Selecting Optimal K-mer Sizes:** Using multiple k-mers enhances assembly accuracy by capturing short and long sequence overlaps.
+ - **Assembly Quality Metrics:** High N50, and comprehensive coverage indicate a well-assembled genome.
+#### Genome Annotation Best Practices
+ - **BLAST-based Functional Annotation:** Use BLASTn for nucleotide sequences and BLASTp for protein sequences to predict gene functions.
+ - **Alternative Annotation Tools:**
+        Prokka: Command-line tool for automated genome annotation of bacterial genomes.
+        RAST: Web-based annotation service for prokaryotic genomes.
+        ORFfinder: Identifies Open Reading Frames (ORFs) to detect protein-coding regions.
+        EggNOG-mapper: Functional annotation of genes based on orthologous groups.
+        InterProScan: Provides domain-based annotations and functional insights.
+#### Visualization Techniques
+ - **Bandage:** Visualize genome assembly graphs to identify contigs, misassemblies, and scaffold connections.
+ - **Mauve:** Perform whole-genome alignments to compare structural variations and conserved genomic regions.
+ - **IGV (Integrative Genomics Viewer):** View read alignments, gene annotations, and genomic variants.
 
 ---
 
-
-
-
 ## Contributing
-
-### Contributions to improve this pipeline are welcome!
+#### Contributions to improve this pipeline are welcome!
 ---
