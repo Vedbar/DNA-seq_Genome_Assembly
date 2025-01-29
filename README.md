@@ -24,7 +24,8 @@ This repository provides a detailed step-by-step guide for genome assembly using
     - [Assembly Visualization](#exercise-VI-assembly-visualization)  
     - [Comparing Genomes](#exercise-VII-comparing-genome)  
     - [Genome Annotation](#exercise-VIII-genome-annotation)  
-12. [Educational Notes](#11-educational-notes)
+11. [Educational Notes](#11-educational-notes)
+    
 
 ---
 
