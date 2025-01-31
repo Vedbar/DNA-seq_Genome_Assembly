@@ -196,9 +196,9 @@ Reconstructing a genome by piecing together sequencing reads.
 ```
 
 - Download Reference genome
-- Organism: [Cereibacter sphaeroides 2.4.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_007493.2)
-- Organism: [Cereibacter sphaeroides KD131](https://www.ncbi.nlm.nih.gov/nuccore/NC_011958)
-- Above are different strains of the same species (Rhodobacter sphaeroides), indicating possible genomic variation due to strain-specific adaptations.
+    - Organism: [Cereibacter sphaeroides 2.4.1](https://www.ncbi.nlm.nih.gov/nuccore/NC_007493.2)
+    - Organism: [Cereibacter sphaeroides KD131](https://www.ncbi.nlm.nih.gov/nuccore/NC_011958)
+    - Above are different strains of the same species (Rhodobacter sphaeroides), indicating possible genomic variation due to strain-specific adaptations.
 
 ```bash
  esearch -db nucleotide -query NC_007493.2 | efetch -format fasta > ref_genome_NC_007493.fa
@@ -207,7 +207,7 @@ Reconstructing a genome by piecing together sequencing reads.
  ```
 ### Note
 - Copy the results folder locally via FileZilla and check out the HTML report
-- Rhodobacter sphaeroides Reference genome consists of 2 chromosomes and 5 plasmids
+- *Rhodobacter sphaeroides* Reference genome consists of 2 chromosomes and 5 plasmids
 
 ### Key Metrics
 - **N50**: Larger values indicate better assembly contiguity.  
@@ -417,7 +417,15 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
  - **Bandage:** Visualize genome assembly graphs to identify contigs, misassemblies, and scaffold connections.
  - **Mauve:** Perform whole-genome alignments to compare structural variations and conserved genomic regions.
  - **IGV (Integrative Genomics Viewer):** View read alignments, gene annotations, and genomic variants.
-   
+
+#### Videos
+- [Introduction | Linux | Basic Commands | Conda | FileZilla](https://www.youtube.com/watch?v=UXj6iN1okmA&t=418s) 
+- [NCBI NOW, Lecture 1, NCBI Resources for NGS](https://www.youtube.com/embed/C_MaY8Lt4XM)
+- [NCBI NOW, Lecture 2, The FASTQ File Format](https://www.youtube.com/embed/AvuTp3s_a1o)
+- [Using FastQC](https://www.youtube.com/watch?v=bz93ReOv87Y)
+- [Trim Reads w/ Trimmomatic](https://www.youtube.com/embed/rinGE9TKgKA)
+
+
 ---
 
 ## Contributing
