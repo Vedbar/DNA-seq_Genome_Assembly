@@ -419,9 +419,9 @@ esearch -db nucleotide -query NC_002549 | efetch -format fasta > ref_genome.fa
  - **IGV (Integrative Genomics Viewer):** View read alignments, gene annotations, and genomic variants.
 
 ### Videos
-- [Introduction-Linux-Basic Commands-Conda-FileZilla](https://www.youtube.com/watch?v=UXj6iN1okmA&t=418s) 
 - [NCBI NOW, Lecture 1, NCBI Resources for NGS](https://www.youtube.com/embed/C_MaY8Lt4XM)
 - [NCBI NOW, Lecture 2, The FASTQ File Format](https://www.youtube.com/embed/AvuTp3s_a1o)
+- [Introduction-Linux-Basic Commands-Conda-FileZilla](https://www.youtube.com/watch?v=UXj6iN1okmA&t=418s) 
 - [Using FastQC](https://www.youtube.com/watch?v=bz93ReOv87Y)
 - [Trim Reads w/ Trimmomatic](https://www.youtube.com/embed/rinGE9TKgKA)
 
